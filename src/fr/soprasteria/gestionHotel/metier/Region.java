@@ -24,7 +24,7 @@ public class Region {
 	@Id
 	@Column(name = "REGION_ID", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer region_id;
+	private short region_id;
 	
 	@Column(name="NOM_REGION")
 	protected String nom_region;
@@ -33,8 +33,8 @@ public class Region {
 	@JoinColumn (name="PAYS_ID",nullable=false)
 	private Pays pays;
 	
-	@OneToMany(mappedBy = "regions",cascade=CascadeType.ALL) 
-	private Set<Ville> villes = new HashSet<Ville>(); 
+	@OneToMany(mappedBy = "region",cascade=CascadeType.ALL) 
+	private Set<Ville> ville = new HashSet<Ville>(); 
 	
 	public Region(){
 		
@@ -50,11 +50,11 @@ public class Region {
 		return String.format("[%d,%s,%d]", getRegion_id(), getNom_region(),pays.getPays_id());
 	}
 
-	public Integer getRegion_id() {
+	public short getRegion_id() {
 		return region_id;
 	}
 
-	public void setRegion_id(Integer region_id) {
+	public void setRegion_id(short region_id) {
 		this.region_id = region_id;
 	}
 

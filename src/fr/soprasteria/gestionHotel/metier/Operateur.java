@@ -28,8 +28,8 @@ public class Operateur {
 	@Column(name="CHEF_ID")
 	protected String chef_id;
 	
-	@OneToMany(mappedBy = "operateurs",cascade=CascadeType.ALL) 
-	private Set<Client> clients = new HashSet<Client>(); 
+	@OneToMany(mappedBy = "operateur",cascade=CascadeType.ALL) 
+	private Set<Client> client = new HashSet<Client>(); 
 	
 	
 	public Operateur (){
@@ -70,11 +70,11 @@ public class Operateur {
 	}
 
 	public Set<Client> getClients() {
-		return clients;
+		return client;
 	}
 
 	public void setClients(Set<Client> clients) {
-		this.clients = clients;
+		this.client = clients;
 	}
 	
 }

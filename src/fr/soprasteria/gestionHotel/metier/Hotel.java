@@ -21,7 +21,7 @@ public class Hotel {
 	@Id
 	@Column(name = "HOTEL_ID", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer HOTEL_ID;
+	private int HOTEL_ID;
 
 
 	@Column(name = "NOM_HOTEL", length = 30, nullable = false, unique = true)
@@ -31,10 +31,10 @@ public class Hotel {
 	@JoinColumn(name = "VILLE_ID", nullable = false)
 	private Ville ville;
 
-	@OneToMany(mappedBy = "reservation", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "hotel", fetch = FetchType.LAZY)
 	private Set<Reservation> reservation = new HashSet<Reservation>();
 
-	@OneToMany(mappedBy = "facture", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "hotel", fetch = FetchType.LAZY)
 	private Set<Facture> facture = new HashSet<Facture>();
 
 	public String toString() {
@@ -50,11 +50,11 @@ public class Hotel {
 		this.ville = ville;
 	}
 
-	public Integer getHOTEL_ID() {
+	public int getHOTEL_ID() {
 		return HOTEL_ID;
 	}
 
-	public void setHOTEL_ID(Integer hOTEL_ID) {
+	public void setHOTEL_ID(int hOTEL_ID) {
 		HOTEL_ID = hOTEL_ID;
 	}
 
@@ -66,21 +66,6 @@ public class Hotel {
 		NOM_HOTEL = nOM_HOTEL;
 	}
 
-	public Set<Reservation> getReservation() {
-		return reservation;
-	}
-
-	public void setReservation(Set<Reservation> reservation) {
-		this.reservation = reservation;
-	}
-
-	public Set<Facture> getFacture() {
-		return facture;
-	}
-
-	public void setFacture(Set<Facture> facture) {
-		this.facture = facture;
-	}
 
 	public Ville getVille() {
 		return ville;

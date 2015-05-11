@@ -40,7 +40,7 @@ public class Client {
 	protected String parrain_id;
 
 	@Column(name = "AGE")
-	protected Integer age;
+	protected short age;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "VILLE_ID", nullable = false)
@@ -50,16 +50,16 @@ public class Client {
 	@JoinColumn(name = "OPERATEUR_ID", nullable = false)
 	private Operateur operateur;
 
-	@OneToMany(mappedBy = "clients", cascade = CascadeType.ALL)
-	private Set<Reservation> reservations = new HashSet<Reservation>();
+	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+	private Set<Reservation> reservation = new HashSet<Reservation>();
 
-	@OneToMany(mappedBy = "clients", cascade = CascadeType.ALL)
-	private Set<Facture> factures = new HashSet<Facture>();
+	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+	private Set<Facture> facture = new HashSet<Facture>();
 
 
 	public Client(String nom_client, String prenom_client,
 			String adresse_rue_client, String tel_client, String parrain_id,
-			Integer age, Ville ville, Operateur operateur) {
+			short age, Ville ville, Operateur operateur) {
 		super();
 		this.nom_client = nom_client;
 		this.prenom_client = prenom_client;
@@ -129,11 +129,11 @@ public class Client {
 		this.parrain_id = parrain_id;
 	}
 
-	public Integer getAge() {
+	public short getAge() {
 		return age;
 	}
 
-	public void setAge(Integer age) {
+	public void setAge(short age) {
 		this.age = age;
 	}
 
@@ -154,19 +154,19 @@ public class Client {
 	}
 
 	public Set<Reservation> getReservations() {
-		return reservations;
+		return reservation;
 	}
 
 	public void setReservations(Set<Reservation> reservations) {
-		this.reservations = reservations;
+		this.reservation = reservations;
 	}
 
 	public Set<Facture> getFactures() {
-		return factures;
+		return facture;
 	}
 
 	public void setFactures(Set<Facture> factures) {
-		this.factures = factures;
+		this.facture = factures;
 	}
 
 }

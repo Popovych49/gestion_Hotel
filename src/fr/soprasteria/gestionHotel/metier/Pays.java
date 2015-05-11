@@ -21,14 +21,14 @@ public class Pays {
 	@Id
 	@Column(name = "PAYS_ID", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer pays_id;
+	private short pays_id;
 	
 	
 	@Column(name="NOM_PAYS")
 	protected String nom_pays;
 	
 	@OneToMany(mappedBy = "pays",cascade=CascadeType.ALL) 
-	private Set<Region> regions = new HashSet<Region>(); 
+	private Set<Region> region = new HashSet<Region>(); 
 
 	public Pays(){
 	}
@@ -42,11 +42,11 @@ public class Pays {
 		return String.format("[%d,%s]", getPays_id(), getNom_pays());
 	}
 
-	public Integer getPays_id() {
+	public short getPays_id() {
 		return pays_id;
 	}
 
-	public void setPays_id(Integer pays_id) {
+	public void setPays_id(short pays_id) {
 		this.pays_id = pays_id;
 	}
 
@@ -57,14 +57,5 @@ public class Pays {
 	public void setNom_pays(String nom_pays) {
 		this.nom_pays = nom_pays;
 	}
-
-	public Set<Region> getRegions() {
-		return regions;
-	}
-
-	public void setRegions(Set<Region> regions) {
-		this.regions = regions;
-	}
-	
 	
 }

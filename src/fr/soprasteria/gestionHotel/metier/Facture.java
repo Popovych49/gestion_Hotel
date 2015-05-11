@@ -21,14 +21,14 @@ import javax.persistence.TemporalType;
 		@Id
 		@Column(name = "FACTURE_ID", nullable = false)
 		@GeneratedValue(strategy = GenerationType.AUTO)
-		private Integer FACTURE_ID;
+		private int FACTURE_ID;
 
-		@Column(name = "DATE_DEB_SEJOUR", nullable = false)
-		@Temporal(TemporalType.DATE)
+		@Column(name = "DATE_DEB_SEJOUR",  nullable = false)
+		@Temporal(TemporalType.TIMESTAMP)
 		private Date DATE_DEB_SEJOUR;
 
 		@Column(name = "NBNUITS_SEJOUR", length = 30, nullable = false, unique = true)
-		private int NBNUITS_SEJOUR;
+		private byte NBNUITS_SEJOUR;
 
 		@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 		@JoinColumn(name = "CLIENT_ID", unique = false, nullable = false)
@@ -48,7 +48,7 @@ import javax.persistence.TemporalType;
 		public Facture() {
 		}
 
-		public Facture(Date DATE_DEB_SEJOUR, int NBNUITS_SEJOUR, Client client, Hotel hotel) {
+		public Facture(Date DATE_DEB_SEJOUR, byte NBNUITS_SEJOUR, Client client, Hotel hotel) {
 			this.DATE_DEB_SEJOUR = DATE_DEB_SEJOUR;
 			this.NBNUITS_SEJOUR =NBNUITS_SEJOUR;
 			this.client = client;
@@ -71,11 +71,11 @@ import javax.persistence.TemporalType;
 			this.DATE_DEB_SEJOUR = date_deb_sejour;
 		}
 
-		public int getNbnuits_sejour() {
+		public byte getNbnuits_sejour() {
 			return NBNUITS_SEJOUR;
 		}
 
-		public void setNbnuits_sejour(int nbnuits_sejour) {
+		public void setNbnuits_sejour(byte nbnuits_sejour) {
 			this.NBNUITS_SEJOUR = nbnuits_sejour;
 		}
 

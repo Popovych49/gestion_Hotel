@@ -1,17 +1,25 @@
 package fr.soprasteria.gestionHotel.metier;
 
+import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "hotel")
-public class LigneFacture {
+@Table(name = "ligne_facture")
+public class LigneFacture implements Serializable  {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "FACTURE_ID", unique = false, nullable = false)
 	private Hotel hotel;
@@ -21,7 +29,7 @@ public class LigneFacture {
 	private Produit produit;
 
 	@Column(name = "QUANTITE", length = 30, nullable = false, unique = true)
-	private int QUANTITE;
+	private short QUANTITE;
 
 	public String toString() {
 		return String.format("[%d,%d,%s,%d]", getHotel().getHOTEL_ID(),
@@ -32,8 +40,7 @@ public class LigneFacture {
 	}
 
 
-	public LigneFacture(Hotel hotel, Produit produit, int QUANTITE) {
-		super();
+	public LigneFacture(Hotel hotel, Produit produit, short QUANTITE) {
 		this.hotel = hotel;
 		this.produit = produit;
 		this.QUANTITE = QUANTITE;
@@ -59,7 +66,7 @@ public class LigneFacture {
 		return QUANTITE;
 	}
 
-	public void setQUANTITE(int qUANTITE) {
+	public void setQUANTITE(short qUANTITE) {
 		QUANTITE = qUANTITE;
 	}
 

@@ -16,14 +16,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Ville")
+@Table(name="ville")
 
 public class Ville {
 
 	@Id
 	@Column(name = "VILLE_ID", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer ville_id;
+	private short ville_id;
 	
 	@Column(name="NOM_VILLE")
 	protected String nom_ville;
@@ -32,10 +32,10 @@ public class Ville {
 	@JoinColumn (name="REGION_ID",nullable=false)
 	private Region region;
 	
-	@OneToMany(mappedBy = "villes",cascade=CascadeType.ALL) 
+	@OneToMany(mappedBy = "ville",cascade=CascadeType.ALL) 
 	private Set<Hotel> hotel = new HashSet<Hotel>(); 
 	
-	@OneToMany(mappedBy = "villes",cascade=CascadeType.ALL) 
+	@OneToMany(mappedBy = "ville",cascade=CascadeType.ALL) 
 	private Set<Client> client = new HashSet<Client>(); 
 	
 	public Ville() {
@@ -54,11 +54,11 @@ public class Ville {
 				region.getRegion_id());
 	}
 
-	public Integer getVille_id() {
+	public short getVille_id() {
 		return ville_id;
 	}
 
-	public void setVille_id(Integer ville_id) {
+	public void setVille_id(short ville_id) {
 		this.ville_id = ville_id;
 	}
 

@@ -16,19 +16,19 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "facture")
+@Table(name = "reservation")
 public class Reservation {
 	@Id
 	@Column(name = "RESERVATION_ID", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer RESERVATION_ID;
+	private int RESERVATION_ID;
 
 	@Column(name = "DATE_DEB_RESERVATION", nullable = false)
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date DATE_DEB_RESERVATION;
 
 	@Column(name = "NBNUITS_RESERVATION", length = 30, nullable = false, unique = true)
-	private int NBNUITS_RESERVATION;
+	private byte NBNUITS_RESERVATION;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "CLIENT_ID", unique = false, nullable = false)
@@ -48,18 +48,18 @@ public class Reservation {
 	public Reservation() {
 	}
 
-	public Reservation(Date DATE_DEB_RESERVATION, int NBNUITS_RESERVATION, Client client, Hotel hotel) {
+	public Reservation(Date DATE_DEB_RESERVATION, byte NBNUITS_RESERVATION, Client client, Hotel hotel) {
 		this.DATE_DEB_RESERVATION = DATE_DEB_RESERVATION;
 		this.NBNUITS_RESERVATION = NBNUITS_RESERVATION;
 		this.client = client;
 		this.hotel = hotel;
 	}
 
-	public Integer getRESERVATION_ID() {
+	public int getRESERVATION_ID() {
 		return RESERVATION_ID;
 	}
 
-	public void setRESERVATION_ID(Integer rESERVATION_ID) {
+	public void setRESERVATION_ID(int rESERVATION_ID) {
 		RESERVATION_ID = rESERVATION_ID;
 	}
 
@@ -71,11 +71,11 @@ public class Reservation {
 		DATE_DEB_RESERVATION = dATE_DEB_RESERVATION;
 	}
 
-	public int getNBNUITS_RESERVATION() {
+	public byte getNBNUITS_RESERVATION() {
 		return NBNUITS_RESERVATION;
 	}
 
-	public void setNBNUITS_RESERVATION(int nBNUITS_RESERVATION) {
+	public void setNBNUITS_RESERVATION(byte nBNUITS_RESERVATION) {
 		NBNUITS_RESERVATION = nBNUITS_RESERVATION;
 	}
 
