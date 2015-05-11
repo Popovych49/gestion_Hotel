@@ -1,7 +1,4 @@
 package fr.soprasteria.gestionHotel.metier;
-
-import java.io.Serializable;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,16 +14,18 @@ import javax.persistence.Table;
 @Table(name = "ligne_facture")
 public class LigneFacture {
 
-
+//Définition des différentes colonnes de la table
 	@Id
 	@Column(name = "LIGNE_ID", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String ligne_facture_id;
 	
+	//Récupération de la colonne ID_Facture de la table Facture
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "FACTURE_ID", unique = false, nullable = false)
 	private Hotel hotel;
 
+	//Récupération de la colonne ID_Produit de la table Produit
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRODUIT_ID", unique = false, nullable = false)
 	private Produit produit;
