@@ -26,7 +26,7 @@ public class Operateur {
 	protected String nom_operateur;
 	
 	@Column(name="CHEF_ID")
-	protected String chef_id;
+	protected Operateur chef_id;
 	
 	@OneToMany(mappedBy = "operateur",cascade=CascadeType.ALL) 
 	private Set<Client> client = new HashSet<Client>(); 
@@ -35,7 +35,7 @@ public class Operateur {
 	public Operateur (){
 	}
 	
-	public Operateur(String nom, String chef_id) {
+	public Operateur(String nom, Operateur chef_id) {
 		setNom_operateur(nom);
 		this.chef_id = chef_id;
 	}
@@ -61,11 +61,11 @@ public class Operateur {
 		this.nom_operateur = nom_operateur;
 	}
 
-	public String getChef_id() {
+	public Operateur getChef_id() {
 		return chef_id;
 	}
 
-	public void setChef_id(String chef_id) {
+	public void setChef_id(Operateur chef_id) {
 		this.chef_id = chef_id;
 	}
 

@@ -37,7 +37,7 @@ public class Client {
 	protected String tel_client;
 
 	@Column(name = "PARRAIN_ID")
-	protected String parrain_id;
+	protected Operateur parrain_id;
 
 	@Column(name = "AGE")
 	protected short age;
@@ -56,9 +56,8 @@ public class Client {
 	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private Set<Facture> facture = new HashSet<Facture>();
 
-
 	public Client(String nom_client, String prenom_client,
-			String adresse_rue_client, String tel_client, String parrain_id,
+			String adresse_rue_client, String tel_client, Operateur parrain_id,
 			short age, Ville ville, Operateur operateur) {
 		super();
 		this.nom_client = nom_client;
@@ -121,11 +120,11 @@ public class Client {
 		this.tel_client = tel_client;
 	}
 
-	public String getParrain_id() {
+	public Operateur getParrain_id() {
 		return parrain_id;
 	}
 
-	public void setParrain_id(String parrain_id) {
+	public void setParrain_id(Operateur parrain_id) {
 		this.parrain_id = parrain_id;
 	}
 
