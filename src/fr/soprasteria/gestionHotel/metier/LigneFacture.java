@@ -1,10 +1,13 @@
 package fr.soprasteria.gestionHotel.metier;
 
 import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,14 +15,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ligne_facture")
-public class LigneFacture implements Serializable  {
+public class LigneFacture {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(name = "LIGNE_ID", nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private String ligne_facture_id;
+	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "FACTURE_ID", unique = false, nullable = false)
 	private Hotel hotel;
