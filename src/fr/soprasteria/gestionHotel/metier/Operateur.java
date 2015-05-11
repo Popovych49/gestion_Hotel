@@ -35,8 +35,9 @@ public class Operateur {
 	public Operateur (){
 	}
 	
-	public Operateur(String nom) {
+	public Operateur(String nom, String chef_id) {
 		setNom_operateur(nom);
+		this.chef_id = chef_id;
 	}
 
 	// toString

@@ -31,7 +31,11 @@ public class LigneFacture {
 	public LigneFacture() {
 	}
 
-	public LigneFacture(int QUANTITE) {
+
+	public LigneFacture(Hotel hotel, Produit produit, int QUANTITE) {
+		super();
+		this.hotel = hotel;
+		this.produit = produit;
 		this.QUANTITE = QUANTITE;
 	}
 

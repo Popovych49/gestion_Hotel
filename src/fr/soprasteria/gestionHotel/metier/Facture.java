@@ -23,7 +23,7 @@ import javax.persistence.TemporalType;
 		@GeneratedValue(strategy = GenerationType.AUTO)
 		private Integer FACTURE_ID;
 
-//		@Column(name = "DATE_DEB_SEJOUR", nullable = false)
+		@Column(name = "DATE_DEB_SEJOUR", nullable = false)
 		@Temporal(TemporalType.DATE)
 		private Date DATE_DEB_SEJOUR;
 
@@ -31,12 +31,13 @@ import javax.persistence.TemporalType;
 		private int NBNUITS_SEJOUR;
 
 		@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+		@JoinColumn(name = "CLIENT_ID", unique = false, nullable = false)
+		private Client client;
+		
+		@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 		@JoinColumn(name = "HOTEL_ID", unique = false, nullable = false)
 		private Hotel hotel;
 
-		@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-		@JoinColumn(name = "CLIENT_ID", unique = false, nullable = false)
-		private Client client;
 
 		public String toString() {
 			return String.format("[%d,%s,%d,%s]", getFacture_id(),

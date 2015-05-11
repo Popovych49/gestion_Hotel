@@ -3,12 +3,15 @@ package fr.soprasteria.gestionHotel.metier;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,8 +27,9 @@ public class Hotel {
 	@Column(name = "NOM_HOTEL", length = 30, nullable = false, unique = true)
 	private String NOM_HOTEL;
 
-	@Column(name = "VILLE_ID", length = 30, nullable = false, unique = true)
-	private int VILLE_ID;
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "VILLE_ID", nullable = false)
+	private Ville ville;
 
 	@OneToMany(mappedBy = "reservation", fetch = FetchType.LAZY)
 	private Set<Reservation> reservation = new HashSet<Reservation>();
@@ -35,15 +39,15 @@ public class Hotel {
 
 	public String toString() {
 		return String.format("[%d,%d,%s,%d]", getHOTEL_ID(),
-				getNOM_HOTEL(), getVILLE_ID());
+				getNOM_HOTEL(), getVille().getVille_id());
 	}
 
 	public Hotel() {
 	}
 
-	public Hotel(String NOM_HOTEL, int VILLE_ID) {
+	public Hotel(String NOM_HOTEL, Ville ville) {
 		this.NOM_HOTEL = NOM_HOTEL;
-		this.VILLE_ID = VILLE_ID;
+		this.ville = ville;
 	}
 
 	public Integer getHOTEL_ID() {
@@ -62,14 +66,6 @@ public class Hotel {
 		NOM_HOTEL = nOM_HOTEL;
 	}
 
-	public int getVILLE_ID() {
-		return VILLE_ID;
-	}
-
-	public void setVILLE_ID(int vILLE_ID) {
-		VILLE_ID = vILLE_ID;
-	}
-
 	public Set<Reservation> getReservation() {
 		return reservation;
 	}
@@ -84,6 +80,14 @@ public class Hotel {
 
 	public void setFacture(Set<Facture> facture) {
 		this.facture = facture;
+	}
+
+	public Ville getVille() {
+		return ville;
+	}
+
+	public void setVille(Ville ville) {
+		this.ville = ville;
 	}
 
 	

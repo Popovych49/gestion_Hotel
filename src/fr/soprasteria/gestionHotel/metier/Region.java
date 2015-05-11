@@ -40,8 +40,9 @@ public class Region {
 		
 	}
 	
-	public Region(String nom) {
+	public Region(String nom, Pays pays) {
 		setNom_region(nom);
+		this.pays = pays;
 	}
 
 	// toString 

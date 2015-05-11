@@ -33,16 +33,21 @@ public class Ville {
 	private Region region;
 	
 	@OneToMany(mappedBy = "villes",cascade=CascadeType.ALL) 
-	private Set<Ville> villes = new HashSet<Ville>(); 
+	private Set<Hotel> hotel = new HashSet<Hotel>(); 
+	
+	@OneToMany(mappedBy = "villes",cascade=CascadeType.ALL) 
+	private Set<Client> client = new HashSet<Client>(); 
 	
 	public Ville() {
 
 	}
 
-	public Ville(String nom) {
-		setNom_ville(nom);
+	public Ville(String nom_ville, Region region) {
+		super();
+		this.nom_ville = nom_ville;
+		this.region = region;
 	}
-	
+
 	// toString
 	public String toString() {
 		return String.format("[%d,%s,%d]", getVille_id(), getNom_ville(),
@@ -73,12 +78,5 @@ public class Ville {
 		this.region = region;
 	}
 
-	public Set<Ville> getVilles() {
-		return villes;
-	}
 
-	public void setVilles(Set<Ville> villes) {
-		this.villes = villes;
-	}
-	
 }
