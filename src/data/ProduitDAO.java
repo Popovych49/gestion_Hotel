@@ -7,23 +7,23 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-public class ClientDAO implements IDAO{  //Cf VilleDAO pour la description de toutes les méthodes
+public class ProduitDAO implements IDAO{//Cf VilleDAO pour la description de toutes les méthodes
 
 	EntityManagerFactory emf;
 	EntityManager em;
 	EntityTransaction tx;
 
-	private static ClientDAO instance;
+	private static ProduitDAO instance;
 
-	public static ClientDAO getInstance() {
+	public static ProduitDAO getInstance() {
 		if (instance == null) {
-			instance = new ClientDAO();
+			instance = new ProduitDAO();
 		}
 		return instance;
 	}
 
 
-	public ClientDAO() {
+	public ProduitDAO() {
 		emf = Persistence.createEntityManagerFactory("basehotel");
 		em = emf.createEntityManager();
 		tx = em.getTransaction();
@@ -44,14 +44,14 @@ public class ClientDAO implements IDAO{  //Cf VilleDAO pour la description de to
 
 	@SuppressWarnings("unchecked")
 	public List<Object> getAll() {
-		return em.createQuery("select v from Client v ")
+		return em.createQuery("select v from Produit v ")
 				.getResultList();
 	}
 
 
 	@SuppressWarnings("unchecked")
 	public List<Object> getWhere(String whereClause) {
-		return em.createQuery("select v from Client v where " + whereClause)
+		return em.createQuery("select v from Produit v where " + whereClause)
 				.getResultList();
 	}
 
@@ -67,6 +67,6 @@ public class ClientDAO implements IDAO{  //Cf VilleDAO pour la description de to
 
 		return result.toString();
 	}
-	
-	
+
+
 }
