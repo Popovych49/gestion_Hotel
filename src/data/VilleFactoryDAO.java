@@ -18,11 +18,8 @@ public class VilleFactoryDAO {
 	}
 
 	//Récupérer un nouveau VilleDAO
-	public IVilleDAO getIVilleDAO() {
-		IVilleDAO r = new VilleDAO();
+	public IDAO getVilleDAO() {
+		IDAO r = new VilleDAO();
 		return r;
 	}
-
-	
-
 }
